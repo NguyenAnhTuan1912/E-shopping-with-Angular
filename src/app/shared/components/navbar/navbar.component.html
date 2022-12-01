@@ -1,0 +1,12 @@
+<nav #navBar>
+  <p>{{ baseUrl }}</p>
+  <ng-container *ngFor="let appRouterLink of appRouterLinks">
+    <a
+      [routerLink]="[appRouterLink.link]"
+      #navbarlinkchildren
+      (click)="onNavBarLinkClick($event)"
+      >{{ appRouterLink.name }}</a
+    >
+  </ng-container>
+  <p>{{ text }}</p>
+</nav>
