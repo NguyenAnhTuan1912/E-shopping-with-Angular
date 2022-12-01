@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
+import { SearchComponent } from './components/search/search.component';
+import { SearchBarComponent } from './components/searchbar/searchbar.component';
 
 import { PercentPipe } from './pipes/percent.pipe';
 import { SpecialCharacterToSpacePipe } from './pipes/specialCharacterToSpace.pipe';
@@ -15,6 +17,8 @@ import { SpecialCharacterToSpacePipe } from './pipes/specialCharacterToSpace.pip
     HeaderComponent,
     NavbarComponent,
     HomeComponent,
+    SearchComponent,
+    SearchBarComponent,
     PercentPipe,
     SpecialCharacterToSpacePipe,
   ],
@@ -23,6 +27,8 @@ import { SpecialCharacterToSpacePipe } from './pipes/specialCharacterToSpace.pip
     HeaderComponent,
     NavbarComponent,
     HomeComponent,
+    SearchComponent,
+    SearchBarComponent,
     PercentPipe,
     SpecialCharacterToSpacePipe,
   ],

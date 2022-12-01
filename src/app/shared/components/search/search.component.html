@@ -1,0 +1,47 @@
+<div class="search">
+  <h2>Hello, welcome to your search result page in E-Shopping!</h2>
+  <div class="search-keys mt-2 mb-3">
+    <p>You search:</p>
+    <ng-container
+      *ngFor="let searchParamsKey of searchParamsKeys; let i = index"
+    >
+      <p class="search-key">
+        {{ searchParamsKey }}:
+        {{ searchParams[searchParamsKey] }}
+      </p>
+      <p *ngIf="i < searchParamsKeys.length - 1">;</p>
+    </ng-container>
+  </div>
+  <div class="mb-1">
+    <p>Found {{ filteredProducts.length }} result(s).</p>
+  </div>
+  <!-- Hard code -->
+  <table id="product-table" *ngIf="filteredProducts.length > 0">
+    <thead>
+      <tr>
+        <td class="p-1">Id</td>
+        <td class="p-1">Name</td>
+        <td class="p-1">Category</td>
+        <td class="p-1">Price</td>
+        <td class="p-1">Discount</td>
+        <td class="p-1">Discount Percent</td>
+        <td class="p-1">Product Status</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="product-row" *ngFor="let product of filteredProducts">
+        <td class="p-1">{{ product.id }}</td>
+        <td class="p-1">{{ product.name }}</td>
+        <td class="p-1">
+          {{ product.category | specialCharacterToSpacePipe: '-' | titlecase }}
+        </td>
+        <td class="p-1">{{ product.price }}</td>
+        <td class="p-1">{{ product.isDiscount ? 'YES' : 'NO' }}</td>
+        <td class="p-1">
+          {{ product.discountPercentInDecimal | myPercentPipe }}
+        </td>
+        <td class="p-1">{{ product.productStatus }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

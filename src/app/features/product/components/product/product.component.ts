@@ -50,7 +50,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       (events: NavigationEnd) => {
         if (events instanceof NavigationEnd) {
           const segments = getPathSegments(
-            product_routing_patterns['typeOfProducts'],
+            product_routing_patterns['toCategoryOfProduct'],
             events.url
           );
           console.log('Segments view: ', segments.view);

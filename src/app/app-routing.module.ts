@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ErrorComponent } from './shared/components/error/error.component';
 import { HomeComponent } from './shared/components/home/home.component';
+import { SearchComponent } from './shared/components/search/search.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
     path: 'products',
     loadChildren: () =>
       import('./features/product/product.module').then((m) => m.ProductModule),
+  },
+  {
+    path: 'search',
+    component: SearchComponent,
   },
   {
     path: 'error/:id',
