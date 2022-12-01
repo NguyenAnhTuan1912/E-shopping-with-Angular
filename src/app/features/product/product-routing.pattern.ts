@@ -1,6 +1,6 @@
 const product_routing_patterns = {
-  home: '',
-  products: '/:view',
-  typeOfProducts: '/:view/:category',
+  toHome: '',
+  toViewOfProduct: '/:view',
+  toCategoryOfProduct: '/:view/:category',
 };
 export default product_routing_patterns;

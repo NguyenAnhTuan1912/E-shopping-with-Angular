@@ -4,17 +4,22 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductComponent } from './components/product/product.component';
 import { ProductViewComponent } from './components/product-view/product-view.component';
 
+import product_routing_patterns from './product-routing.pattern';
+
 const routes: Routes = [
   {
-    path: '',
+    // ''
+    path: product_routing_patterns['toHome'],
     component: ProductComponent,
     children: [
       {
-        path: ':view',
+        // /:view
+        path: product_routing_patterns['toViewOfProduct'],
         component: ProductViewComponent,
       },
       {
-        path: ':view/:category',
+        // /:view/:category
+        path: product_routing_patterns['toCategoryOfProduct'],
         component: ProductViewComponent,
       },
     ],
