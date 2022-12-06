@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default function toTitleCase(text) {\n  return text.replace(/(^\\w|\\s+\\w)/gi, c => c.toUpperCase());\n}","map":null,"metadata":{},"sourceType":"module"}

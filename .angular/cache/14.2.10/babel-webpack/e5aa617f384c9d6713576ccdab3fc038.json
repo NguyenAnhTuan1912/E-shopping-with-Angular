@@ -1,0 +1,1 @@
+{"ast":null,"code":"const product_routing_patterns = {\n  toHome: '',\n  toViewOfProduct: ':view',\n  toCategoryOfProduct: ':view/:category'\n};\nexport default product_routing_patterns;","map":null,"metadata":{},"sourceType":"module"}

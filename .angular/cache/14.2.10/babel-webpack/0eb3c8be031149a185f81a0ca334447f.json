@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default function getUniqueItemsFromArray(arr) {\n  const newArr = [];\n\n  for (let item of arr) {\n    if (newArr.indexOf(item) === -1) newArr.push(item);\n  }\n\n  return newArr;\n}","map":null,"metadata":{},"sourceType":"module"}

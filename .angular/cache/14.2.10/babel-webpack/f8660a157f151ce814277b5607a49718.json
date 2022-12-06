@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default function replaceSpecialCharToSpace(oldText, character) {\n  return oldText.replace(character, ' ');\n}","map":null,"metadata":{},"sourceType":"module"}
