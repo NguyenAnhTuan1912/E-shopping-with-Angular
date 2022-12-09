@@ -1,6 +1,6 @@
 export default function replaceSpecialCharToSpace(
-  oldText: string,
-  character: string
+	oldText: string,
+	character: string
 ) {
-  return oldText.replace(character, ' ');
+	return oldText.replace(character, ' ');
 }

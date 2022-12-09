@@ -1,0 +1,1 @@
+{"ast":null,"code":"const identity_routing_patterns = {\n  toHome: '',\n  toLogin: 'login',\n  toRegister: 'register'\n};\nexport default identity_routing_patterns;","map":null,"metadata":{},"sourceType":"module"}

@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'myPercentPipe',
+	name: 'myPercentPipe',
 })
 export class PercentPipe implements PipeTransform {
-  transform(rate: number): string {
-    return `${rate * 100}%`;
-  }
+	transform(rate: number): string {
+		return `${rate * 100}%`;
+	}
 }

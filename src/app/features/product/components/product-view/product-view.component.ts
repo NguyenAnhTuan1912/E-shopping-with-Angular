@@ -14,93 +14,93 @@ import replaceSpecialCharToSpace from '../../../../shared/utils/replaceSpecialCh
 import toTitleCase from '../../../../shared/utils/toTitleCase';
 
 @Component({
-  selector: 'app-product-view',
-  templateUrl: './product-view.component.html',
+	selector: 'app-product-view',
+	templateUrl: './product-view.component.html',
 })
 export class ProductViewComponent implements OnInit, OnDestroy {
-  typeOfProduct!: string;
-  typeOfProductsView: string;
-  products: ProductModel[];
-  categories: string[];
-  categoryLinks: AppRouterLinkModel[] = [];
+	typeOfProduct!: string;
+	typeOfProductsView: string;
+	products: ProductModel[];
+	categories: string[];
+	categoryLinks: AppRouterLinkModel[] = [];
 
-  routeSubcription: Subscription;
-  productSubcription?: Subscription;
-  typeOfProductsViewSubscription: Subscription;
+	routeSubcription: Subscription;
+	productSubcription?: Subscription;
+	typeOfProductsViewSubscription: Subscription;
 
-  constructor(
-    private route: ActivatedRoute,
-    private productService: ProductService,
-    private logger: LoggerService,
-    public errorHandler: ErrorHandlerService
-  ) {
-    this.routeSubcription = this.route.url.subscribe((data) => {
-      console.log('Product view routing');
-      console.log(data);
-      if (!data[1]) this.typeOfProduct = 'all';
-      else this.typeOfProduct = data[1].path;
-      if (!this.typeOfProductsView) {
-        console.log('CHAWNG TYPE OF PRODUCT VIEW');
-        this.typeOfProductsView = this.productService.getTypeOfProductsView();
-      }
-      if (this.routeSubcription) {
-        this.logger.sendLog('How', 'log', 'BOLD_BLUE_TEXT_WHITE_BG');
-        this.productService.nextProducts(this.productService.getProducts());
-      }
-    });
-    this.typeOfProductsViewSubscription = this.productService
-      .typeOfProductsViewObservable()
-      .subscribe((type) => {
-        if (this.typeOfProductsView !== type) {
-          this.typeOfProductsView = type;
-        }
-      });
-    this.products = this.productService.getProducts();
-    console.log('Product property of Product component');
-    console.log(this.products);
-  }
+	constructor(
+		private route: ActivatedRoute,
+		private productService: ProductService,
+		private logger: LoggerService,
+		public errorHandler: ErrorHandlerService
+	) {
+		this.routeSubcription = this.route.url.subscribe((data) => {
+			console.log('Product view routing');
+			console.log(data);
+			if (!data[1]) this.typeOfProduct = 'all';
+			else this.typeOfProduct = data[1].path;
+			if (!this.typeOfProductsView) {
+				console.log('CHAWNG TYPE OF PRODUCT VIEW');
+				this.typeOfProductsView = this.productService.getTypeOfProductsView();
+			}
+			if (this.routeSubcription) {
+				this.logger.sendLog('How', 'log', 'BOLD_BLUE_TEXT_WHITE_BG');
+				this.productService.nextProducts(this.productService.getProducts());
+			}
+		});
+		this.typeOfProductsViewSubscription = this.productService
+			.typeOfProductsViewObservable()
+			.subscribe((type) => {
+				if (this.typeOfProductsView !== type) {
+					this.typeOfProductsView = type;
+				}
+			});
+		this.products = this.productService.getProducts();
+		console.log('Product property of Product component');
+		console.log(this.products);
+	}
 
-  ngOnInit(): void {
-    this.logger.sendLog('Product view init.', 'log', 'BOLD_BLUE_TEXT_WHITE_BG');
-    // Cái này thay cho việc fetch dữ liệu :))))
-    setTimeout(() => {
-      this.productService.nextProducts(ProductData);
-    }, 0);
+	ngOnInit(): void {
+		this.logger.sendLog('Product view init.', 'log', 'BOLD_BLUE_TEXT_WHITE_BG');
+		// Cái này thay cho việc fetch dữ liệu :))))
+		setTimeout(() => {
+			this.productService.nextProducts(ProductData);
+		}, 0);
 
-    this.productSubcription = this.productService.productObservable().subscribe(
-      (products) => {
-        console.log('Get products from data service in Product component.');
-        console.log(this.typeOfProduct);
-        if (this.typeOfProduct !== 'all') {
-          this.products = products.filter(
-            (product) => product.category === this.typeOfProduct
-          );
-        } else {
-          this.products = [...products];
-        }
-      },
-      (err) => {
-        this.errorHandler.forbidden(err);
-      }
-    );
-  }
+		this.productSubcription = this.productService.productObservable().subscribe(
+			(products) => {
+				console.log('Get products from data service in Product component.');
+				console.log(this.typeOfProduct);
+				if (this.typeOfProduct !== 'all') {
+					this.products = products.filter(
+						(product) => product.category === this.typeOfProduct
+					);
+				} else {
+					this.products = [...products];
+				}
+			},
+			(err) => {
+				this.errorHandler.forbidden(err);
+			}
+		);
+	}
 
-  ngAfterViewInit(): void {
-    this.logger.sendLog(
-      'Product view after view init.',
-      'log',
-      'BOLD_BLUE_TEXT_WHITE_BG'
-    );
-  }
+	ngAfterViewInit(): void {
+		this.logger.sendLog(
+			'Product view after view init.',
+			'log',
+			'BOLD_BLUE_TEXT_WHITE_BG'
+		);
+	}
 
-  ngOnDestroy(): void {
-    this.logger.sendLog(
-      'Product view destroy',
-      'log',
-      'BOLD_BLUE_TEXT_WHITE_BG'
-    );
-    this.products = [];
-    this.routeSubcription.unsubscribe();
-    this.productSubcription.unsubscribe();
-  }
+	ngOnDestroy(): void {
+		this.logger.sendLog(
+			'Product view destroy',
+			'log',
+			'BOLD_BLUE_TEXT_WHITE_BG'
+		);
+		this.products = [];
+		this.routeSubcription.unsubscribe();
+		this.productSubcription.unsubscribe();
+	}
 }

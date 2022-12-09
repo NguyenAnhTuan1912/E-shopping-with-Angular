@@ -1,14 +1,14 @@
 <header>
-  <h3>{{ title }}</h3>
-  <ng-container *ngIf="hasSearchBar">
-    <app-searchbar
-      [placeHolder]="'Search products...'"
-      [hasOption]="true"
-      [keyOption]="'category'"
-      [searchConfig]="{
-        searchContent: 'products',
-        searchBy: 'name'
-      }"
-    ></app-searchbar>
-  </ng-container>
+	<h3>{{ title }}</h3>
+	<ng-container *ngIf="hasSearchBar">
+		<app-searchbar
+			[placeHolder]="'Search products...'"
+			[hasOption]="true"
+			[keyOption]="'category'"
+			[searchConfig]="{
+				searchContent: 'products',
+				searchBy: 'name'
+			}"
+		></app-searchbar>
+	</ng-container>
 </header>

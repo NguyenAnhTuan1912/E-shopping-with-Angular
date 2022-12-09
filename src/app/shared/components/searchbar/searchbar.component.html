@@ -1,22 +1,22 @@
 <div class="search-bar">
 <label class="app-label">
-  <span class="material-symbols-outlined">search</span>
-  <select *ngIf="hasOption" class="app-select border-right" #searchSelect>
-    <option value="" selected>{{ keyOption | titlecase }}</option>
-    <ng-container *ngFor="let searchOption of searchOptions">
-      <option [value]="searchOption.value">
-        {{ searchOption.name | titlecase }}
-      </option>
-    </ng-container>
-  </select>
-  <input
-    class="app-label-input"
-    type="text"
-    name="search"
-    autocomplete="off"
-    placeholder="{{ placeHolder }}"
-    #searchInput
-    (keydown)="onSearchInputEnter($event)"
-  />
+	<span class="material-symbols-outlined">search</span>
+	<select *ngIf="hasOption" class="app-select border-right" #searchSelect>
+		<option value="" selected>{{ keyOption | titlecase }}</option>
+		<ng-container *ngFor="let searchOption of searchOptions">
+			<option [value]="searchOption.value">
+				{{ searchOption.name | titlecase }}
+			</option>
+		</ng-container>
+	</select>
+	<input
+		class="app-label-input"
+		type="text"
+		name="search"
+		autocomplete="off"
+		placeholder="{{ placeHolder }}"
+		#searchInput
+		(keydown)="onSearchInputEnter($event)"
+	/>
 </label>
 </div>

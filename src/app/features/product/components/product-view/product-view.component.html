@@ -1,53 +1,53 @@
 <h4 class="pb-1">
-  You are viewing
-  {{ typeOfProduct | specialCharacterToSpacePipe: '-' }} products.
+	You are viewing
+	{{ typeOfProduct | specialCharacterToSpacePipe: '-' }} products.
 </h4>
 <table id="product-table" *ngIf="typeOfProductsView === 'table'">
-  <thead>
-    <tr>
-      <td class="p-1">Id</td>
-      <td class="p-1">Name</td>
-      <td class="p-1">Category</td>
-      <td class="p-1">Price</td>
-      <td class="p-1">Discount</td>
-      <td class="p-1">Discount Percent</td>
-      <td class="p-1">Product Status</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="product-row" *ngFor="let product of products">
-      <td class="p-1">{{ product.id }}</td>
-      <td class="p-1">{{ product.name }}</td>
-      <td class="p-1">
-        {{ product.category | specialCharacterToSpacePipe: '-' | titlecase }}
-      </td>
-      <td class="p-1">{{ product.price }}</td>
-      <td class="p-1">{{ product.isDiscount ? 'YES' : 'NO' }}</td>
-      <td class="p-1">
-        {{ product.discountPercentInDecimal | myPercentPipe }}
-      </td>
-      <td class="p-1">{{ product.productStatus }}</td>
-    </tr>
-  </tbody>
+	<thead>
+		<tr>
+			<td class="p-1">Id</td>
+			<td class="p-1">Name</td>
+			<td class="p-1">Category</td>
+			<td class="p-1">Price</td>
+			<td class="p-1">Discount</td>
+			<td class="p-1">Discount Percent</td>
+			<td class="p-1">Product Status</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="product-row" *ngFor="let product of products">
+			<td class="p-1">{{ product.id }}</td>
+			<td class="p-1">{{ product.name }}</td>
+			<td class="p-1">
+				{{ product.category | specialCharacterToSpacePipe: '-' | titlecase }}
+			</td>
+			<td class="p-1">{{ product.price }}</td>
+			<td class="p-1">{{ product.isDiscount ? 'YES' : 'NO' }}</td>
+			<td class="p-1">
+				{{ product.discountPercentInDecimal | myPercentPipe }}
+			</td>
+			<td class="p-1">{{ product.productStatus }}</td>
+		</tr>
+	</tbody>
 </table>
 <div class="product-list" *ngIf="typeOfProductsView === 'list'">
-  <ul *ngFor="let product of products" class="mb-3">
-    <li>
-      ID: {{ product.id }}
-      <ul>
-        <li>Name: {{ product.name }}</li>
-        <li>
-          Category:
-          {{ product.category | specialCharacterToSpacePipe: '-' | titlecase }}
-        </li>
-        <li>Price: {{ product.price }}</li>
-        <li>Discount: {{ product.isDiscount ? 'YES' : 'NO' }}</li>
-        <li>
-          Discount Percent:
-          {{ product.discountPercentInDecimal | myPercentPipe }}
-        </li>
-        <li>Product Status: {{ product.productStatus }}</li>
-      </ul>
-    </li>
-  </ul>
+	<ul *ngFor="let product of products" class="mb-3">
+		<li>
+			ID: {{ product.id }}
+			<ul>
+				<li>Name: {{ product.name }}</li>
+				<li>
+					Category:
+					{{ product.category | specialCharacterToSpacePipe: '-' | titlecase }}
+				</li>
+				<li>Price: {{ product.price }}</li>
+				<li>Discount: {{ product.isDiscount ? 'YES' : 'NO' }}</li>
+				<li>
+					Discount Percent:
+					{{ product.discountPercentInDecimal | myPercentPipe }}
+				</li>
+				<li>Product Status: {{ product.productStatus }}</li>
+			</ul>
+		</li>
+	</ul>
 </div>

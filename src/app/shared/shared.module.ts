@@ -12,29 +12,29 @@ import { PercentPipe } from './pipes/percent.pipe';
 import { SpecialCharacterToSpacePipe } from './pipes/specialCharacterToSpace.pipe';
 
 @NgModule({
-  imports: [CommonModule, RouterModule],
-  declarations: [
-    HeaderComponent,
-    NavbarComponent,
-    HomeComponent,
-    SearchComponent,
-    SearchBarComponent,
-    PercentPipe,
-    SpecialCharacterToSpacePipe,
-  ],
-  exports: [
-    CommonModule,
-    HeaderComponent,
-    NavbarComponent,
-    HomeComponent,
-    SearchComponent,
-    SearchBarComponent,
-    PercentPipe,
-    SpecialCharacterToSpacePipe,
-  ],
+	imports: [CommonModule, RouterModule],
+	declarations: [
+		HeaderComponent,
+		NavbarComponent,
+		HomeComponent,
+		SearchComponent,
+		SearchBarComponent,
+		PercentPipe,
+		SpecialCharacterToSpacePipe,
+	],
+	exports: [
+		CommonModule,
+		HeaderComponent,
+		NavbarComponent,
+		HomeComponent,
+		SearchComponent,
+		SearchBarComponent,
+		PercentPipe,
+		SpecialCharacterToSpacePipe,
+	],
 })
 export class SharedModule {
-  constructor() {
-    console.log('Shared Module is created!');
-  }
+	constructor() {
+		console.log('Shared Module is created!');
+	}
 }

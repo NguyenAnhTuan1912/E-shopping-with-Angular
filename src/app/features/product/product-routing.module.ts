@@ -7,27 +7,27 @@ import { ProductViewComponent } from './components/product-view/product-view.com
 import product_routing_patterns from './product-routing.pattern';
 
 const routes: Routes = [
-  {
-    // ''
-    path: product_routing_patterns['toHome'],
-    component: ProductComponent,
-    children: [
-      {
-        // /:view
-        path: product_routing_patterns['toViewOfProduct'],
-        component: ProductViewComponent,
-      },
-      {
-        // /:view/:category
-        path: product_routing_patterns['toCategoryOfProduct'],
-        component: ProductViewComponent,
-      },
-    ],
-  },
+	{
+		// ''
+		path: product_routing_patterns['toHome'],
+		component: ProductComponent,
+		children: [
+			{
+				// /:view
+				path: product_routing_patterns['toViewOfProduct'],
+				component: ProductViewComponent,
+			},
+			{
+				// /:view/:category
+				path: product_routing_patterns['toCategoryOfProduct'],
+				component: ProductViewComponent,
+			},
+		],
+	},
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+	imports: [RouterModule.forChild(routes)],
+	exports: [RouterModule],
 })
 export class ProductRoutingModule {}

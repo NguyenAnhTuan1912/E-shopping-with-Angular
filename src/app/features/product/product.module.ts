@@ -7,11 +7,11 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductViewComponent } from './components/product-view/product-view.component';
 
 @NgModule({
-  imports: [SharedModule, ProductRoutingModule],
-  declarations: [ProductComponent, ProductViewComponent],
+	imports: [SharedModule, ProductRoutingModule],
+	declarations: [ProductComponent, ProductViewComponent],
 })
 export class ProductModule {
-  constructor() {
-    console.log('Product Module is created!');
-  }
+	constructor() {
+		console.log('Product Module is created!');
+	}
 }
