@@ -8,7 +8,11 @@
 			"sourceRoot": "src",
 			"projectType": "application",
 			"prefix": "app",
-			"schematics": {},
+			"schematics": {
+				"@schematics/angular:application": {
+				  "strict": true
+				}
+			},
 			"architect": {
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
@@ -18,7 +22,7 @@
 						"main": "src/main.ts",
 						"polyfills": "src/polyfills.ts",
 						"tsConfig": "tsconfig.app.json",
-						"assets": ["src/favicon.ico", "src/assets"],
+						"assets": ["src/assets"],
 						"styles": ["src/styles.css"],
 						"scripts": []
 					},
@@ -39,19 +43,30 @@
 							"extractLicenses": true,
 							"vendorChunk": false,
 							"buildOptimizer": true
+						},
+						"development": {
+							"buildOptimizer": false,
+							"optimization": false,
+							"vendorChunk": true,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"namedChunks": true
 						}
-					}
+					},
+					"defaultConfiguration": "production"
 				},
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
-					"options": {
-						"browserTarget": "demo:build"
-					},
 					"configurations": {
 						"production": {
 							"browserTarget": "demo:build:production"
+						},
+						"development": {
+							"browserTarget": "demo:build:development",
+							"proxyConfig": "proxy.conf.js"
 						}
-					}
+					},
+					"defaultConfiguration": "development"
 				},
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n",
@@ -69,6 +84,32 @@
 						"styles": ["styles.css"],
 						"scripts": [],
 						"assets": ["src/favicon.ico", "src/assets"]
+					}
+				},
+				"server": {
+					"builder": "@angular-devkit/build-angular:server",
+					"options": {
+						"outputPath": "dist-server",
+						"main": "src/main.ts",
+						"tsConfig": "tsconfig.server.json"
+					},
+					"configurations": {
+						"dev": {
+							"optimization": true,
+							"outputHashing": "all",
+							"sourceMap": false,
+							"namedChunks": false,
+							"extractLicenses": true,
+							"vendorChunk": true
+						},
+						"production": {
+							"optimization": true,
+							"outputHashing": "all",
+							"sourceMap": false,
+							"namedChunks": false,
+							"extractLicenses": true,
+							"vendorChunk": false
+						}
 					}
 				},
 				"lint": {

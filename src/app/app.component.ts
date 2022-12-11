@@ -1,4 +1,5 @@
 import { Component, VERSION, OnInit } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import AppRouterLinkModel from './shared/models/AppRouterLinkModel';
 
@@ -9,4 +10,11 @@ import AppRouterLinkModel from './shared/models/AppRouterLinkModel';
 })
 export class AppComponent {
 	name = 'Angular ' + VERSION.major;
+	isAuthorized: boolean = false;
+	jwtHelper: JwtHelperService = new JwtHelperService();;
+
+	constructor() {
+		const isTokenExpired = this.jwtHelper.isTokenExpired(localStorage.getItem('token'));
+		this.isAuthorized = !isTokenExpired;
+	}
 }

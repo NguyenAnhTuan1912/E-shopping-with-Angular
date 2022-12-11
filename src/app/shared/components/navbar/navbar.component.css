@@ -4,24 +4,10 @@
 }
 
 :host(.border-bottom) nav {
-	border-bottom: 1px solid;
+	border-bottom: var(--app-default-border);
 }
 
 nav {
 	display: flex;
 	width: 100%;
-}
-
-nav a {
-	display: block;
-	color: black;
-	padding: 12px 16px;
-}
-
-nav a.click {
-	background-color: aliceblue;
-}
-
-nav a:hover {
-	background-color: aliceblue;
 }

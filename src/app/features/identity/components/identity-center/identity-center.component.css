@@ -1,0 +1,13 @@
+#identity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 60px);
+}
+
+.identity-form {
+	width: 60%;
+	max-width: 720px;
+	min-width: 300px;
+}

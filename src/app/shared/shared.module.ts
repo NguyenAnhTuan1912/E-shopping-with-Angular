@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { MainComponent } from './components/main/main.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
@@ -14,6 +15,7 @@ import { SpecialCharacterToSpacePipe } from './pipes/specialCharacterToSpace.pip
 @NgModule({
 	imports: [CommonModule, RouterModule],
 	declarations: [
+		MainComponent,
 		HeaderComponent,
 		NavbarComponent,
 		HomeComponent,
@@ -24,6 +26,7 @@ import { SpecialCharacterToSpacePipe } from './pipes/specialCharacterToSpace.pip
 	],
 	exports: [
 		CommonModule,
+		MainComponent,
 		HeaderComponent,
 		NavbarComponent,
 		HomeComponent,

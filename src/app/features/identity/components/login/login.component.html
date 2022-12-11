@@ -1,4 +1,50 @@
-<div id="login">
-    <h1>Đăng nhập vào mới đuọc xem nha mày</h1>
-    <p>Chưa có tài khoản thì qua đây đăng kí nha mạy <a [routerLink]="'/identity/register'">Đăng kí</a></p>
+<div class="identity-form">
+    <div class="identity-content-container mb-3">
+        <h1>Log-in</h1>
+        <p>Welcome back, my friend!</p>
+    </div>
+    <div>
+        <form [formGroup]="loginForm" id="login-form" action="" method="post" (ngSubmit)="onFormSubmit()" autocomplete="disabled">
+            <label class="app-label" for="username">
+                <span class="material-symbols-outlined">person</span>
+                <input type="text" class="app-label-input" placeholder="Enter your username..." formControlName="username" id="username" />
+            </label>
+            <div class="error-messaeges" *ngIf="loginForm.get('username').invalid">
+                <p class="error-messaege" *ngIf="loginForm.get('username').errors['maxlength']!">
+                    The required max length of username is {{loginForm.get('username').errors['maxlength']!.requiredLength}}.
+                </p>
+                <p class="error-messaege" *ngIf="loginForm.get('username').errors['minlength']!">
+                    The required min length of username is {{loginForm.get('username').errors['minlength']!.requiredLength}}.
+                </p>
+                <p class="error-messaege" *ngIf="loginForm.get('username').errors['required']!">
+                    The username is required.
+                </p>
+                <div class="error-messaege" *ngIf="loginForm.get('username').errors['pattern']!">
+                    The username is invalid.
+                    <ol>Username does not contain:
+                        <li>Special character.</li>
+                        <li>"." at head and tail.</li>
+                        <li>Numbers at head.</li>
+                        <li>Spaces.</li>
+                    </ol>
+                </div>
+            </div>
+            <label class="app-label mt-2" for="password">
+                <span class="material-symbols-outlined">key</span>
+                <input type="password" class="app-label-input" placeholder="Enter your password..." formControlName="password" id="password" />
+            </label>
+            <div class="error-messaeges" *ngIf="loginForm.get('password').invalid">
+                <p class="error-messaege" *ngIf="loginForm.get('password').errors['maxlength']!">
+                    The required max length of password is {{loginForm.get('password').errors['maxlength']!.requiredLength}}.
+                </p>
+                <p class="error-messaege" *ngIf="loginForm.get('password').errors['minlength']!">
+                    The required min length of password is {{loginForm.get('password').errors['minlength']!.requiredLength}}.
+                </p>
+                <p class="error-messaege" *ngIf="loginForm.get('password').errors['required']!">
+                    The password is required.
+                </p>
+            </div>
+            <button class="app-btn app-btn-outline-bg-white mt-2" type="submit">Log-in</button>
+        </form>
+    </div>
 </div>

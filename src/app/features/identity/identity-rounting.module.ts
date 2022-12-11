@@ -5,9 +5,14 @@ import { LoginComponent } from "./components/login/login.component";
 import { RegisterComponent } from "./components/register/register.component";
 
 import identity_routing_patterns from "./identity-routing.pattern";
-import { IdentityCenterPage } from "./pages/identity-center/identity-center.component";
+import { IdentityCenterPage } from "./components/identity-center/identity-center.component";
 
 const routes: Routes = [
+    {
+        path: '',
+        redirectTo: identity_routing_patterns['toLogin'],
+        pathMatch: 'full'
+    },
     {
         path: identity_routing_patterns['toHome'],
         component: IdentityCenterPage,

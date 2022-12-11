@@ -18,7 +18,7 @@ import AppRouterLinkModel from '../../models/AppRouterLinkModel';
 const defaultRouterLinks: AppRouterLinkModel[] = [
 	{
 		name: 'Home',
-		link: '/',
+		link: 'home',
 	},
 	{
 		name: 'Products',
@@ -35,6 +35,7 @@ export class NavbarComponent implements AfterViewInit, OnChanges {
 	@Input() appRouterLinks: AppRouterLinkModel[] = defaultRouterLinks;
 	@Input() text: string;
 	@Input() baseUrl: string = '';
+	@Input() isAuthorized: boolean = true;
 	@ViewChild('navBar')
 	navBar: ElementRef<HTMLAnchorElement>;
 	currentPath: string;

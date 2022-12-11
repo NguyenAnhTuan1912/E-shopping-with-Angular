@@ -4,26 +4,39 @@ import { AuthGuard } from './core/guards/auth.guard';
 
 import { ErrorComponent } from './shared/components/error/error.component';
 import { HomeComponent } from './shared/components/home/home.component';
+import { MainComponent } from './shared/components/main/main.component';
 import { SearchComponent } from './shared/components/search/search.component';
 
 const routes: Routes = [
 	{
 		path: '',
-		component: HomeComponent,
+		redirectTo: '/home',
+		pathMatch: 'full'
 	},
 	{
-		path: 'products',
-		loadChildren: () =>
-			import('./features/product/product.module').then(m => m.ProductModule),
+		path: '',
+		component: MainComponent,
+		canActivate: [AuthGuard],
+		children: [
+			{
+				path: 'home',
+				component: HomeComponent,
+			},
+			{
+				path: 'search',
+				component: SearchComponent,
+			},
+			{
+				path: 'products',
+				loadChildren: () =>
+					import('./features/product/product.module').then(m => m.ProductModule),
+			},
+		]
 	},
 	{
 		path: 'identity',
 		loadChildren: () =>
 			import('./features/identity/identity.module').then(m => m.IdentityModule),
-	},
-	{
-		path: 'search',
-		component: SearchComponent,
 	},
 	{
 		path: 'error/:id',

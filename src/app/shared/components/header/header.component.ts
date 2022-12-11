@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class HeaderComponent {
 	@Input() title: string = 'Title here';
 	@Input() hasSearchBar: boolean = true;
+	@Input() isAuthorized: boolean = true;
 }

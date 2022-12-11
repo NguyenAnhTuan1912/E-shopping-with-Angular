@@ -1,14 +1,22 @@
 <header>
 	<h3>{{ title }}</h3>
-	<ng-container *ngIf="hasSearchBar">
-		<app-searchbar
-			[placeHolder]="'Search products...'"
-			[hasOption]="true"
-			[keyOption]="'category'"
-			[searchConfig]="{
-				searchContent: 'products',
-				searchBy: 'name'
-			}"
-		></app-searchbar>
-	</ng-container>
+	<div class="header-features">
+		<ng-container *ngIf="!isAuthorized">
+			<div class="app-btn-container me-2">
+				<a class="app-btn app-btn-bg-white" [routerLink]="['/login']">Login</a>
+				<a class="app-btn app-btn-bg-white" [routerLink]="['/register']">Register</a>
+			</div>
+		</ng-container>
+		<ng-container *ngIf="hasSearchBar && isAuthorized">
+			<app-searchbar
+				[placeHolder]="'Search products...'"
+				[hasOption]="true"
+				[keyOption]="'category'"
+				[searchConfig]="{
+					searchContent: 'products',
+					searchBy: 'name'
+				}"
+			></app-searchbar>
+		</ng-container>
+	</div>
 </header>
