@@ -26,4 +26,8 @@ export class ErrorHandlerService {
 		console.error(`Error code ${ERROR_CODES['404']}` + exMessage);
 		this.router.navigate(['/error/404']);
 	}
+
+	invalidFormPU(exMessage: string) {
+		console.log(exMessage);
+	}
 }

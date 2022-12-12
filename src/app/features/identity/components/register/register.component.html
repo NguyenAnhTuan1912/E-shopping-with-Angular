@@ -1,4 +1,130 @@
 <div class="identity-form">
-    <h1>Đăng kí tài khoản đi mày</h1>
-    <p>Ờ, có tài khoản chưa mày? Có rồi thì về đây để <a [routerLink]="'/login'">đăng nhập</a> nha.</p>
+    <div class="identity-content-container mb-3">
+        <h1>Register</h1>
+        <p>Wow, you're new here? Keep in touch with us!</p>
+    </div>
+    <div>
+        <form [formGroup]="registerForm" id="login-form" action="" method="post" (ngSubmit)="onFormSubmit()" autocomplete="disabled">
+            <!-- Username input start -->
+            <label class="app-label" for="username">
+                <span class="material-symbols-outlined me-1">person</span>
+                <input autocomplete="off" type="text" class="app-label-input" placeholder="Enter your username..." formControlName="username" id="username" />
+            </label>
+            <div class="error-messaeges" *ngIf="registerForm.get('username').invalid">
+                <p class="error-messaege" *ngIf="registerForm.get('username').errors['maxlength']!">
+                    The required max length of username is {{registerForm.get('username').errors['maxlength']!.requiredLength}}.
+                </p>
+                <p class="error-messaege" *ngIf="registerForm.get('username').errors['minlength']!">
+                    The required min length of username is {{registerForm.get('username').errors['minlength']!.requiredLength}}.
+                </p>
+                <p class="error-messaege" *ngIf="registerForm.get('username').errors['required']!">
+                    Username is required.
+                </p>
+                <div class="error-messaege" *ngIf="registerForm.get('username').errors['pattern']!">
+                    Username is invalid.
+                    <ol>Username does not contain:
+                        <li>Special character.</li>
+                        <li>"." at head and tail.</li>
+                        <li>Numbers at head.</li>
+                        <li>Spaces.</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- Username input end -->
+
+            
+            <!-- Email input start -->
+            <label class="app-label mt-2" for="email">
+                <span class="material-symbols-outlined me-1">email</span>
+                <input autocomplete="off" type="email" class="app-label-input" placeholder="Enter your email..." formControlName="email" id="email" />
+            </label>
+            <div class="error-messaeges" *ngIf="registerForm.get('email').invalid">
+                <p class="error-messaege" *ngIf="registerForm.get('email').errors['maxlength']!">
+                    The required max length of email is {{registerForm.get('email').errors['maxlength']!.requiredLength}}.
+                </p>
+                <p class="error-messaege" *ngIf="registerForm.get('email').errors['minlength']!">
+                    The required min length of email is {{registerForm.get('email').errors['minlength']!.requiredLength}}.
+                </p>
+                <p class="error-messaege" *ngIf="registerForm.get('email').errors['required']!">
+                    Email is required.
+                </p>
+                <p class="error-messaege" *ngIf="registerForm.get('email').errors['pattern']!">The email is invalid.</p>
+            </div>
+            <!-- Email input end -->
+
+            <!-- Altername input start -->
+            <label class="app-label mt-2" for="altername">
+                <span class="material-symbols-outlined me-1">person</span>
+                <input autocomplete="off" type="altername" class="app-label-input" placeholder="Enter your altername..." formControlName="altername" id="altername" />
+            </label>
+            <div class="error-messaeges" *ngIf="registerForm.get('altername').invalid">
+                <p class="error-messaege" *ngIf="registerForm.get('altername').errors['maxlength']!">
+                    The required max length of altername is {{registerForm.get('altername').errors['maxlength']!.requiredLength}}.
+                </p>
+                <p class="error-messaege" *ngIf="registerForm.get('altername').errors['minlength']!">
+                    The required min length of altername is {{registerForm.get('altername').errors['minlength']!.requiredLength}}.
+                </p>
+                <p class="error-messaege" *ngIf="registerForm.get('altername').errors['required']!">
+                    Altername is required.
+                </p>
+                <div class="error-messaege" *ngIf="registerForm.get('altername').errors['pattern']!">
+                    Altername is invalid.
+                    <ol>Username does not contain:
+                        <li>Spaces in head and tails</li>
+                        <li>Numbers</li>
+                        <li>Special characters.</li>
+                        <li>Dots '.'</li>
+                        <li>More than one space between 2 words.</li>
+                    </ol>
+                    <p>Example: 'Nguyen Anh Tuan' is valid.</p>
+                </div>
+            </div>
+            <!-- Altername input end -->
+
+            <!-- Password input group start -->
+            <div class="input-group" formGroupName="passwordGroup">
+                <!-- Password input start -->
+                <label class="app-label mt-2" for="password">
+                    <span class="material-symbols-outlined me-1">lock</span>
+                    <input autocomplete="off" type="password" class="app-label-input" placeholder="Enter your password..." formControlName="password" id="password" />
+                </label>
+                <div class="error-messaeges" *ngIf="registerForm.get('passwordGroup.password').invalid">
+                    <p class="error-messaege" *ngIf="registerForm.get('passwordGroup.password').errors['maxlength']!">
+                        The required max length of password is {{registerForm.get('passwordGroup.password').errors['maxlength']!.requiredLength}}.
+                    </p>
+                    <p class="error-messaege" *ngIf="registerForm.get('passwordGroup.password').errors['minlength']!">
+                        The required min length of password is {{registerForm.get('passwordGroup.password').errors['minlength']!.requiredLength}}.
+                    </p>
+                    <p class="error-messaege" *ngIf="registerForm.get('passwordGroup.password').errors['required']!">
+                        Password is required.
+                    </p>
+                </div>
+                <!-- Password input end -->
+
+                <!-- ConfirmPassword input start -->
+                <label class="app-label mt-2" for="confirmPassword">
+                    <span class="material-symbols-outlined me-1">lock</span>
+                    <input autocomplete="off" type="password" class="app-label-input" placeholder="Confirm your password again" formControlName="confirmPassword" id="confirmPassword" />
+                </label>
+                <div class="error-messaeges" *ngIf="registerForm.get('passwordGroup').invalid">
+                    <p class="error-messaege" *ngIf="registerForm.get('passwordGroup').errors?.notEqual && !registerForm.get('passwordGroup.confirmPassword').errors?.required">
+                        Incorrect!
+                    </p>
+                    <p class="error-messaege" *ngIf="registerForm.get('passwordGroup.confirmPassword').errors?.maxlength">
+                        The required max length of confirm password is {{registerForm.get('passwordGroup.confirmPassword').errors['maxlength']!.requiredLength}}.
+                    </p>
+                    <p class="error-messaege" *ngIf="registerForm.get('passwordGroup.confirmPassword').errors?.minlength">
+                        The required min length of confirm password is {{registerForm.get('passwordGroup.confirmPassword').errors['minlength']!.requiredLength}}.
+                    </p>
+                    <p class="error-messaege" *ngIf="registerForm.get('passwordGroup.confirmPassword').errors?.required">
+                        You must confirm your password!
+                    </p>
+                </div>
+                <!-- Password input group end -->
+            </div>
+
+            <p class="mt-3">You have an account? Log-in <a [routerLink]="'/identity/login'">here</a>.</p>
+            <button class="app-btn app-btn-outline-bg-white mt-2" type="submit">Register</button>
+        </form>
+    </div>
 </div>

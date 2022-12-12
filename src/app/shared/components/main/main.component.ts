@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { AuthService } from "src/app/core/services/auth.service";
 
 @Component({
     selector: 'app-main',
@@ -10,8 +11,8 @@ export class MainComponent {
 	isAuthorized: boolean = false;
 	jwtHelper: JwtHelperService = new JwtHelperService();;
 
-	constructor() {
-		const isTokenExpired = this.jwtHelper.isTokenExpired(localStorage.getItem('token'));
+	constructor(private auth: AuthService) {
+		const isTokenExpired = this.jwtHelper.isTokenExpired(this.auth.getTokenInLocalStorage());
 		this.isAuthorized = !isTokenExpired;
 	}
 }
