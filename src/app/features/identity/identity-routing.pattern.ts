@@ -3,6 +3,6 @@ const identity_routing_patterns = {
 	toLogin: 'login',
 	toRegister: 'register',
 	toForgotPassword: 'forgot-password',
-	toResetPassword: 'reset-password'
+	toResetPassword: 'reset-password/:token'
 };
 export default identity_routing_patterns;

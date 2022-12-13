@@ -81,9 +81,10 @@ export class RegisterComponent implements OnInit {
                 catchError(err => { throw err})
             ).subscribe({
                 next: (data: any) => {
-                    this.router.navigateByUrl('/identity/login').then(() => {
-                        window.location.reload();
-                    });
+                    this.router.navigateByUrl('/identity/login')
+                    // .then(() => {
+                    //     window.location.reload();
+                    // });
                     return;
                 },
                 error: (err) => {

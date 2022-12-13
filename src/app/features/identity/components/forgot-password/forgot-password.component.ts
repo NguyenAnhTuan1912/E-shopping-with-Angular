@@ -43,13 +43,15 @@ export class ForgotPasswordComponent implements OnInit {
                 catchError(err => { throw err})
             ).subscribe({
                 next: (data: any) => {
+                    let url = "/identity/reset-password/";
                     console.log(data);
-                    this.auth.setTokenInLocalStorage(data.recover_token, "recover_token");
-                    this.router.navigateByUrl('/identity/reset-password');
+                    url += data.recover_token
+                    this.router.navigateByUrl(url);
                     return;
                 },
                 error: (err) => {
                     const resError: HttpResErrorModel = err;
+                    console.log(resError);
                     this.errorHandler.invalidFormPU("Invalid form! Please fill out again.");
                     return;
                 }

@@ -16,10 +16,10 @@ export class AuthGuard implements CanActivate {
         const id_token = this.auth.getTokenInLocalStorage();
         const jwtHelper = new JwtHelperService();
         const decodedToken: IDTokenPayloadModel = jwtHelper.decodeToken(id_token);
-        // console.log(decodedToken);
-        // console.log("Authorized condition: ", token !== null  && !jwtHelper.isTokenExpired(token));
-        // console.log('Is token null? ', token);
-        // console.log('Is token expired? ', jwtHelper.isTokenExpired(token));
+        console.log(decodedToken);
+        console.log("Authorized condition: ", id_token !== null  && !jwtHelper.isTokenExpired(id_token));
+        console.log('Is token null? ', id_token);
+        console.log('Is token expired? ', jwtHelper.isTokenExpired(id_token));
         if(id_token !== null && !jwtHelper.isTokenExpired(id_token)) {
             // let roles = route.data['permittedRoles'] as Array<string>;
             if(!this.auth.getUserIdInLocalStorage()) {

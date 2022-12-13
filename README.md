@@ -1,4 +1,4 @@
-# E-shopping - Online shopping app ![](https://img.shields.io/static/v1?label=Build&message=v1.0&color=green)
+# E-shopping - Online shopping app ![](https://img.shields.io/static/v1?label=Build&message=v2.0&color=green)
 
 I make this app to learn about Angular project structure. This app isn't referred by others.
 
@@ -113,7 +113,7 @@ Project directory
 
 I must obey single responsibility principle to develop this app. The old `Product component` is turned into `Product module` (feature module) make `Product module` is more private. With this structure, I'm more focused on developing new "feature". Yeah, It's sound good and better than the old one. That's all, thank for reading.
 
-## Version ![](https://img.shields.io/static/v1?label=Current%20Version&message=v1.0&color=green)
+## Version ![](https://img.shields.io/static/v1?label=Current%20Version&message=v2.0&color=green)
 
 Current version description: Add search bar, search result page, search fearture.
 
@@ -131,5 +131,11 @@ Details
 * ![](https://img.shields.io/static/v1?label=Version&message=1.0&color=green)
   * Add search bar, search result page in `shared`.
   * Add search feature.
+* ![](https://img.shields.io/static/v1?label=Version&message=2.0&color=green)
+  * New features added!
+  * New Logic.
+  * New feature module "identity" (login, register, reset-password, forgot-password).
+  * New guard, services, models.
+  * Update shared module
 
 The project will be updated.

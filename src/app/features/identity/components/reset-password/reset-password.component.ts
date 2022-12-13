@@ -19,16 +19,16 @@ export class ResetPasswordComponent implements OnInit {
     resetPasswordForm: FormGroup;
     reset_token: string;
 
-    routeSubscription: Subscription;
-
     constructor(
         private fb: FormBuilder,
         private auth: AuthService,
         private router: Router,
+        private route: ActivatedRoute,
         private errorHandler: ErrorHandlerService
     ) {
-        this.reset_token = this.auth.getTokenInLocalStorage("reset_token");
-        if(!this.reset_token) {
+        const jwtHelper = new JwtHelperService();
+        this.reset_token = this.route.snapshot.params["token"];
+        if(!this.reset_token || jwtHelper.isTokenExpired(this.reset_token)) {
             this.router.navigateByUrl("/identity");
         }
     }
@@ -39,12 +39,12 @@ export class ResetPasswordComponent implements OnInit {
             confirmPassword: ''
         });
         this.resetPasswordForm.setValidators([checkConfirmPassword]);
-        this.resetPasswordForm.get('passwordGroup.password').setValidators([
+        this.resetPasswordForm.get('password').setValidators([
             Validators.required,
             Validators.maxLength(26),
             Validators.minLength(5)
         ]);
-        this.resetPasswordForm.get('passwordGroup.confirmPassword').setValidators([
+        this.resetPasswordForm.get('confirmPassword').setValidators([
             Validators.required,
             Validators.maxLength(26),
             Validators.minLength(5)
@@ -58,7 +58,7 @@ export class ResetPasswordComponent implements OnInit {
                 password: formValues.password,
                 confirmPassword: formValues.confirmPassword
             };
-            this.auth.resetPassword(rawBody).pipe(
+            this.auth.resetPassword(rawBody, this.reset_token).pipe(
                 catchError(err => { throw err})
             ).subscribe({
                 next: (data: any) => {
@@ -71,6 +71,7 @@ export class ResetPasswordComponent implements OnInit {
                 },
                 error: (err) => {
                     const resError: HttpResErrorModel = err;
+                    console.log(resError);
                     this.errorHandler.invalidFormPU("Invalid form! Please fill out again.");
                     return;
                 }

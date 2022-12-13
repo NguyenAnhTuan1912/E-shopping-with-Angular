@@ -35,42 +35,23 @@ export class AuthService {
     forgotPassword(email: string) {
         const url = `${environments.serverOriginUrl}/auth/forgot-password`;
         const headers = new HttpHeaders({'Content-Type': 'application/json'});
-        const body = JSON.stringify({ email, origin: environments.appOriginUrl });
+        const body = JSON.stringify({ email });
         return this.http.put(url, body, { headers });
     }
 
-    resetPassword(passwordGroup: { password: string; confirmPassword: string }) {
+    resetPassword(passwordGroup: { password: string; confirmPassword: string }, token: string) {
         const url = `${environments.serverOriginUrl}/auth/reset-password`;
-        const access_token = this.getTokenInLocalStorage("access_token");
-        const sub = this.getUserIdInLocalStorage();
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': access_token
+            'Authorization': `Bearer ${token}`
         });
-        const body = JSON.stringify({
-            sub,
-            ...passwordGroup
-        });
+        const body = JSON.stringify(passwordGroup);
         return this.http.put(url, body, { headers });
     }
 
-    clearToken(opt: string = "id_token") {
-        switch(opt) {
-            case "id_token": {
-                localStorage.removeItem("id_token");
-                return true;
-            }
-            case "access_token": {
-                localStorage.removeItem("access_token");
-                return true;
-            }
-            case "all": {
-                localStorage.removeItem("id_token");
-                localStorage.removeItem("access_token");
-                return true;
-            }
-            default: return false;
-        }
+    clearToken(type: string = "id_token") {
+        localStorage.removeItem(type);
+        return true;
     }
 
     getTokenInLocalStorage(type: string = "id_token") {
