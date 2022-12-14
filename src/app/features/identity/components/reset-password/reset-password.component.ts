@@ -5,6 +5,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 import { catchError, Subscription } from "rxjs";
 import { AuthService } from "src/app/core/services/auth.service";
 import { ErrorHandlerService } from "src/app/core/services/error-handler.service";
+import { PopupService } from "src/app/core/services/pop-up.service";
 import HttpResErrorModel from "src/app/shared/models/HttpResErrorModel";
 import { RegisterReqBody } from "src/app/shared/models/ReqBodyModel";
 import checkConfirmPassword from "../../helpers/checkConfirmPassword";
@@ -24,7 +25,8 @@ export class ResetPasswordComponent implements OnInit {
         private auth: AuthService,
         private router: Router,
         private route: ActivatedRoute,
-        private errorHandler: ErrorHandlerService
+        private errorHandler: ErrorHandlerService,
+        private popupService: PopupService
     ) {
         const jwtHelper = new JwtHelperService();
         this.reset_token = this.route.snapshot.params["token"];
@@ -63,15 +65,14 @@ export class ResetPasswordComponent implements OnInit {
             ).subscribe({
                 next: (data: any) => {
                     console.log(data);
-                    this.router.navigateByUrl('/identity/login')
-                    // .then(() => {
-                    //     window.location.reload();
-                    // });
+                    this.popupService.popSuccess({ status: 'Change password successful!', detail: 'Now, login again to see magic :)' });
+                    this.router.navigateByUrl('/identity/login');
                     return;
                 },
                 error: (err) => {
-                    const resError: HttpResErrorModel = err;
+                    const resError: HttpResErrorModel = err.error;
                     console.log(resError);
+                    this.popupService.popError({ status: 'Change password failed!', detail: resError.detail });
                     this.errorHandler.invalidFormPU("Invalid form! Please fill out again.");
                     return;
                 }

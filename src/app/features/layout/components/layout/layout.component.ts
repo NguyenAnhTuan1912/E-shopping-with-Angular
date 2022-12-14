@@ -3,11 +3,11 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from "src/app/core/services/auth.service";
 
 @Component({
-    selector: 'app-main',
-    templateUrl: './main.component.html',
-    styleUrls: ['./main.component.css']
+    selector: 'app-layout',
+    templateUrl: './layout.component.html',
+    styleUrls: ['./layout.component.css']
 })
-export class MainComponent {
+export class LayoutComponent {
 	isAuthorized: boolean = false;
 	jwtHelper: JwtHelperService = new JwtHelperService();;
 

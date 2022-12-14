@@ -6,7 +6,12 @@
 	--padding-value-step: 0.25rem;
 
 	--app-default-border: 1px solid rgba(0, 0, 0, .125);
+	--app-red-border: 1px solid #E12B2B;
+	--app-yellow-border: 1px solid #FFEB36;
+	--app-blue-border: 1px solid #2B7FE1;
+	--app-green-border: 1px solid #48B936;
 	--app-default-box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+	--app-2-box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
 * {
@@ -188,7 +193,7 @@ body {
 /* Margin bottom */
 
 .mb-0 {
-	margin-top: 0;
+	margin-bottom: 0;
 }
 
 .mb-1 {
@@ -392,7 +397,7 @@ body {
 /* padding bottom */
 
 .pb-0 {
-	padding-top: 0;
+	padding-bottom: 0;
 }
 
 .pb-1 {
@@ -548,5 +553,5 @@ table tbody {
 }
 .error-messaeges * {
 	font-size: .81rem;
-	color: red;
+	color: #E12B2B;
 }

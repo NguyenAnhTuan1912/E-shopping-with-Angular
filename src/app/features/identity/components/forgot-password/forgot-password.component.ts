@@ -5,6 +5,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 import { catchError } from "rxjs";
 import { AuthService } from "src/app/core/services/auth.service";
 import { ErrorHandlerService } from "src/app/core/services/error-handler.service";
+import { PopupService } from "src/app/core/services/pop-up.service";
 import HttpResErrorModel from "src/app/shared/models/HttpResErrorModel";
 import { RegisterReqBody } from "src/app/shared/models/ReqBodyModel";
 import input_pattern from "../../validators/input-pattern";
@@ -22,7 +23,8 @@ export class ForgotPasswordComponent implements OnInit {
         private fb: FormBuilder,
         private auth: AuthService,
         private router: Router,
-        private errorHandler: ErrorHandlerService
+        private errorHandler: ErrorHandlerService,
+        private popupService: PopupService
     ) {}
 
     ngOnInit(): void {
@@ -46,18 +48,18 @@ export class ForgotPasswordComponent implements OnInit {
                     let url = "/identity/reset-password/";
                     console.log(data);
                     url += data.recover_token
+                    this.popupService.popSuccess({ status: 'Send reset password request successful!', detail: 'It\'s time to change your secret!' });
                     this.router.navigateByUrl(url);
                     return;
                 },
                 error: (err) => {
-                    const resError: HttpResErrorModel = err;
+                    const resError: HttpResErrorModel = err.error;
                     console.log(resError);
+                    this.popupService.popError({ status: 'Send reset password request failed!', detail: resError.detail });
                     this.errorHandler.invalidFormPU("Invalid form! Please fill out again.");
                     return;
                 }
             })
-        } else {
-            this.errorHandler.invalidFormPU("Invalid form! Please fill out again.");
         }
     }
 }

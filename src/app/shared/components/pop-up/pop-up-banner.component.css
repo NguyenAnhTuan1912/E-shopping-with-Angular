@@ -1,0 +1,43 @@
+:host {
+    position: absolute;
+    display: block;
+    width: 480px;
+    padding-top: 100px;
+}
+
+:host(.top-left) {
+    top: -100px;
+    left: 20px;
+}
+
+:host(.top-right) {
+    top: -100px;
+    right: 20px;
+}
+
+:host(.bottom-left) {
+    bottom: -100px;
+    left: 20px;
+}
+
+:host(.bottom-right) {
+    bottom: -100px;
+    right: 20px;
+}
+
+:host(.bottom-center) {
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+:host(.top-center) {
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.popup-banner {
+    width: 100%;
+    height: 100%;
+}

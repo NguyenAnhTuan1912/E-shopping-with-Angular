@@ -5,6 +5,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 import { catchError } from "rxjs";
 import { AuthService } from "src/app/core/services/auth.service";
 import { ErrorHandlerService } from "src/app/core/services/error-handler.service";
+import { PopupService } from "src/app/core/services/pop-up.service";
 import HttpResErrorModel from "src/app/shared/models/HttpResErrorModel";
 import { LoginReqBody } from "src/app/shared/models/ReqBodyModel";
 import input_pattern from "../../validators/input-pattern";
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
         private fb: FormBuilder,
         private auth: AuthService,
         private router: Router,
-        private errorHandler: ErrorHandlerService
+        private errorHandler: ErrorHandlerService,
+        private popupService: PopupService
     ) {
         // const isTokenExpired = this.jwtHelper.isTokenExpired(localStorage.getItem('token'));
 		// if(!isTokenExpired) {
@@ -58,12 +60,14 @@ export class LoginComponent implements OnInit {
                 next: (data: any) => {
                     this.auth.setTokenInLocalStorage(data.id_token);
                     this.auth.setTokenInLocalStorage(data.id_token, "access_token");
+                    this.popupService.popSuccess({ title: "Login successful!", detail: "Welcome back, my friend!" });
                     this.router.navigateByUrl('/');
                     return;
                 },
                 error: (err) => {
-                    const resError: HttpResErrorModel = err;
-                    this.errorHandler.invalidFormPU("Invalid form! Please fill out again.");
+                    const resError: HttpResErrorModel = err.error;
+                    this.popupService.popError({ title: "Login failed!", detail: resError.detail });
+                    console.log(resError);
                     return;
                 }
             })

@@ -1,0 +1,136 @@
+:host {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 20px;
+}
+
+:host(:only-child),
+:host(:first-child) {
+    margin-top: 20px;
+}
+
+:host(:only-child),
+:host(:last-child) {
+    margin-bottom: 0;
+}
+
+.pop-up {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    box-shadow: var(--app-2-box-shadow);
+}
+
+:host(.top-left) .pop-up,
+:host(.top-right) .pop-up,
+:host(.top-center) .pop-up {
+    animation: disappear-from-bottom .25s ease-in-out forwards;
+}
+
+:host(.top-left) .pop-up.appear,
+:host(.top-right) .pop-up.appear,
+:host(.top-center) .pop-up.appear {
+    animation: appear-from-bottom .25s ease-in-out forwards;
+}
+
+:host(.bottom-left) .pop-up,
+:host(.bottom-right) .pop-up,
+:host(.bottom-center) .pop-up {
+    animation: disappear-from-bottom .25s ease-in-out forwards;
+}
+
+:host(.bottom-left) .pop-up.appear,
+:host(.bottom-right) .pop-up.appear,
+:host(.bottom-center) .pop-up.appear {
+    animation: appear-from-bottom .25s ease-in-out forwards;
+}
+
+@keyframes appear-from-bottom {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes disappear-from-bottom {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+}
+
+@keyframes appear-from-top {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes disappear-from-top {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+}
+
+.pop-up-content {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 0 6px 6px 0;
+}
+
+.pop-up-sign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px 0 0 6px;
+}
+
+.pop-up-sign.error {
+    border: var(--app-red-border);
+    background-color: #E12B2B;
+}
+
+.pop-up-sign.warning {
+    border: var(--app-yellow-border);
+    background-color: #FFEB36;
+}
+
+.pop-up-sign.help {
+    border: var(--app-blue-border);
+    background-color: #2B7FE1;
+}
+
+.pop-up-sign.success {
+    border: var(--app-green-border);
+    background-color: #48B936;
+}
+
+.pop-up-sign .sign {
+    color: white;
+    font-size: 3.2rem;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+}

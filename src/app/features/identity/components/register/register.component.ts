@@ -5,6 +5,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 import { catchError } from "rxjs";
 import { AuthService } from "src/app/core/services/auth.service";
 import { ErrorHandlerService } from "src/app/core/services/error-handler.service";
+import { PopupService } from "src/app/core/services/pop-up.service";
 import HttpResErrorModel from "src/app/shared/models/HttpResErrorModel";
 import { RegisterReqBody } from "src/app/shared/models/ReqBodyModel";
 import checkConfirmPassword from "../../helpers/checkConfirmPassword";
@@ -26,7 +27,8 @@ export class RegisterComponent implements OnInit {
         private fb: FormBuilder,
         private auth: AuthService,
         private router: Router,
-        private errorHandler: ErrorHandlerService
+        private errorHandler: ErrorHandlerService,
+        private popupService: PopupService
     ) {}
 
     ngOnInit(): void {
@@ -81,15 +83,13 @@ export class RegisterComponent implements OnInit {
                 catchError(err => { throw err})
             ).subscribe({
                 next: (data: any) => {
-                    this.router.navigateByUrl('/identity/login')
-                    // .then(() => {
-                    //     window.location.reload();
-                    // });
+                    this.popupService.popSuccess({ title: 'Register successful!', detail: 'Hello newcomer! Login to explore.' });
+                    this.router.navigateByUrl('/identity/login');
                     return;
                 },
                 error: (err) => {
-                    const resError: HttpResErrorModel = err;
-                    this.errorHandler.invalidFormPU("Invalid form! Please fill out again.");
+                    const resError: HttpResErrorModel = err.error;
+                    this.popupService.popError({ title: 'Register failed!', detail: resError.detail });
                     return;
                 }
             })
