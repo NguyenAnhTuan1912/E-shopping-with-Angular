@@ -65,14 +65,14 @@ export class ResetPasswordComponent implements OnInit {
             ).subscribe({
                 next: (data: any) => {
                     console.log(data);
-                    this.popupService.popSuccess({ status: 'Change password successful!', detail: 'Now, login again to see magic :)' });
+                    this.popupService.popSuccess({ title: 'Change password successful!', detail: 'Now, login again to see magic :)' });
                     this.router.navigateByUrl('/identity/login');
                     return;
                 },
                 error: (err) => {
                     const resError: HttpResErrorModel = err.error;
                     console.log(resError);
-                    this.popupService.popError({ status: 'Change password failed!', detail: resError.detail });
+                    this.popupService.popError({ title: 'Change password failed!', detail: resError.detail });
                     this.errorHandler.invalidFormPU("Invalid form! Please fill out again.");
                     return;
                 }

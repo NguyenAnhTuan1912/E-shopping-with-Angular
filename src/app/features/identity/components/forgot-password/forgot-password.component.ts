@@ -48,14 +48,14 @@ export class ForgotPasswordComponent implements OnInit {
                     let url = "/identity/reset-password/";
                     console.log(data);
                     url += data.recover_token
-                    this.popupService.popSuccess({ status: 'Send reset password request successful!', detail: 'It\'s time to change your secret!' });
+                    this.popupService.popSuccess({ title: 'Send reset password request successful!', detail: 'It\'s time to change your secret!' });
                     this.router.navigateByUrl(url);
                     return;
                 },
                 error: (err) => {
                     const resError: HttpResErrorModel = err.error;
                     console.log(resError);
-                    this.popupService.popError({ status: 'Send reset password request failed!', detail: resError.detail });
+                    this.popupService.popError({ title: 'Send reset password request failed!', detail: resError.detail });
                     this.errorHandler.invalidFormPU("Invalid form! Please fill out again.");
                     return;
                 }
