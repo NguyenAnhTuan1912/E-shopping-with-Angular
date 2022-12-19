@@ -1,6 +1,7 @@
 import environments from "src/environments/environments";
 
 export default class UserModel {
+    id: string;
     username: string;
     altername: string;
     password: string;
@@ -9,12 +10,14 @@ export default class UserModel {
     appOrigin: string = environments.appOriginUrl;
 
     constructor({
+        id = '',
         username = '',
         altername = '',
         password = '',
         confirmPassword = '',
         email = ''
     } = {}) {
+        this.id = id;
         this.username = username;
         this.altername = altername;
         this.password = password;

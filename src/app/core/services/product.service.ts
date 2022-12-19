@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, takeUntil } from 'rxjs';
+import environments from 'src/environments/environments';
 import ProductModel from '../../shared/models/ProductModel';
 
 @Injectable({
@@ -15,7 +17,7 @@ export class ProductService {
 
 	private ngUnsubscribe = new Subject<void>();
 
-	constructor() {
+	constructor(private http: HttpClient) {
 		this.productObservable = this.productObservable.bind(this);
 		this.init();
 	}
@@ -49,6 +51,14 @@ export class ProductService {
 
 	public typeOfListViewObservable(): Observable<string> {
 		return this.typeOfListViewSubject.asObservable();
+	}
+
+	searchProductsFromSV(params: string) {
+		return this.http.get(`${environments.serverOriginUrl}/api/v1.0/search?` + params);
+	}
+
+	getProductsFromSV() {
+		return this.http.get(`${environments.serverOriginUrl}/api/v1.0/products`);
 	}
 
 	nextProducts(products: ProductModel[]) {

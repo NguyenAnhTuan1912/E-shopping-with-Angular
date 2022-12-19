@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Params } from "@angular/router";
 
 import Products from "../../data/products.json";
 import replaceSpecialCharToSpace from "../../utils/replaceSpecialCharToSpace";
 
 import ProductModel from "../../models/ProductModel";
 import { Subscription } from "rxjs";
+import { ProductService } from "src/app/core/services/product.service";
 
 @Component({
 	selector: "app-search",
@@ -21,16 +22,28 @@ export class SearchComponent implements OnInit, OnDestroy {
 
 	routeSubscription: Subscription;
 
-	constructor(private route: ActivatedRoute) {
+	constructor(
+		private route: ActivatedRoute,
+		private productService: ProductService
+	) {
 		this.products = Products;
 		this.routeSubscription = this.route.queryParams.subscribe((params) => {
-			this.searchParams = Object.assign({}, params);
-			this.searchParamsKeys = Object.keys(this.searchParams);
-			this.filteredProducts = this.filter(
-				this.searchParamsKeys,
-				this.searchParams
-			);
+			let paramsAsString = this.getParamsAsString(params);
+			// http://localhost:3010/api/v1.0/search?
+			this.productService.searchProductsFromSV(paramsAsString)
+			.subscribe((filteredProducts: ProductModel[]) => {
+				console.log(filteredProducts);
+				this.filteredProducts = filteredProducts;
+			});
 		});
+	}
+
+	getParamsAsString(params: Params) {
+		let str = '';
+		for(let param in params) {
+			str = str + `${param}=${params[param]}` + '&';
+		}
+		return str;
 	}
 
 	filter(keys: string[], searchParams: any): ProductModel[] {

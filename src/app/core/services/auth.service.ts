@@ -49,9 +49,21 @@ export class AuthService {
         return this.http.put(url, body, { headers });
     }
 
-    clearToken(type: string = "id_token") {
+    logout() {
+        this.clearDataInLocalStorage();
+        this.clearDataInLocalStorage("access_token");
+        this.clearDataInLocalStorage("id");
+        window.location.reload();
+    }
+
+    clearDataInLocalStorage(type: string = "id_token") {
         localStorage.removeItem(type);
         return true;
+    }
+
+    clearAllToken() {
+        this.clearDataInLocalStorage();
+        this.clearDataInLocalStorage("access_token");
     }
 
     getTokenInLocalStorage(type: string = "id_token") {

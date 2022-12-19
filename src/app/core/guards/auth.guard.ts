@@ -4,12 +4,14 @@ import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from '../services/auth.service';
 import { IDTokenPayloadModel } from 'src/app/shared/models/JWTPayloadModel';
+import { UserService } from '../services/user.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
     constructor(
         private router: Router,
-        private auth: AuthService
+        private auth: AuthService,
+        private userService: UserService
     ) {}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
@@ -25,9 +27,11 @@ export class AuthGuard implements CanActivate {
             if(!this.auth.getUserIdInLocalStorage()) {
                 this.auth.setUserIdInLocalStorage(decodedToken.sub)
             }
+            this.userService.setUser({ id: decodedToken.sub, username: decodedToken.name });
             return true;
         }
-        this.auth.clearToken('all');
+        this.auth.clearAllToken();
+        this.userService.clearUserDataInLocalStorage();
         this.router.navigate(['/identity/login']);
         return false;
     }

@@ -89,7 +89,7 @@ export class RegisterComponent implements OnInit {
                 },
                 error: (err) => {
                     const resError: HttpResErrorModel = err.error;
-                    this.popupService.popError({ title: 'Register failed!', detail: resError.detail });
+                    console.log(resError);
                     return;
                 }
             })

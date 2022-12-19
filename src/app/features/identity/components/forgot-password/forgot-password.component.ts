@@ -55,8 +55,6 @@ export class ForgotPasswordComponent implements OnInit {
                 error: (err) => {
                     const resError: HttpResErrorModel = err.error;
                     console.log(resError);
-                    this.popupService.popError({ title: 'Send reset password request failed!', detail: resError.detail });
-                    this.errorHandler.invalidFormPU("Invalid form! Please fill out again.");
                     return;
                 }
             })

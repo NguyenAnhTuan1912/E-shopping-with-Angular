@@ -12,6 +12,8 @@ import ProductModel from '../../../../shared/models/ProductModel';
 import getUniqueItemsFromArray from '../../../../shared/utils/getUniqueItemsFromArray';
 import replaceSpecialCharToSpace from '../../../../shared/utils/replaceSpecialCharToSpace';
 import toTitleCase from '../../../../shared/utils/toTitleCase';
+import { HttpClient } from '@angular/common/http';
+import environments from 'src/environments/environments';
 
 @Component({
 	selector: 'app-product-view',
@@ -32,7 +34,8 @@ export class ProductViewComponent implements OnInit, OnDestroy {
 		private route: ActivatedRoute,
 		private productService: ProductService,
 		private logger: LoggerService,
-		public errorHandler: ErrorHandlerService
+		public errorHandler: ErrorHandlerService,
+		private http: HttpClient
 	) {
 		this.routeSubcription = this.route.url.subscribe((data) => {
 			console.log('Product view routing');
@@ -63,9 +66,13 @@ export class ProductViewComponent implements OnInit, OnDestroy {
 	ngOnInit(): void {
 		this.logger.sendLog('Product view init.', 'log', 'BOLD_BLUE_TEXT_WHITE_BG');
 		// Cái này thay cho việc fetch dữ liệu :))))
-		setTimeout(() => {
-			this.productService.nextProducts(ProductData);
-		}, 0);
+		// setTimeout(() => {
+		// 	this.productService.nextProducts(ProductData);
+		// }, 0);
+		this.http.get(`${environments.serverOriginUrl}/api/v1.0/products`)
+		.subscribe((products: ProductModel[]) => {
+			this.productService.nextProducts(products);
+		});
 
 		this.productSubcription = this.productService.productObservable().subscribe(
 			(products) => {

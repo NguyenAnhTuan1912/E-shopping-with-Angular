@@ -7,7 +7,19 @@ import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
 import { PopupService } from './services/pop-up.service';
 
+import { ErrorInterceptorProvider } from './interceptors/error-interceptor';
+import { UserService } from './services/user.service';
+
 @NgModule({
-	providers: [ErrorHandlerService, ProductService, LoggerService, AuthService, PopupService, AuthGuard],
+	providers: [
+		ErrorHandlerService,
+		ProductService,
+		LoggerService,
+		AuthService,
+		UserService,
+		PopupService,
+		AuthGuard,
+		ErrorInterceptorProvider
+	],
 })
 export class CoreModule {}

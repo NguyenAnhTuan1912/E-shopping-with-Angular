@@ -1,12 +1,6 @@
 <header>
 	<h3>{{ title }}</h3>
 	<div class="header-features">
-		<ng-container *ngIf="!isAuthorized">
-			<div class="app-btn-container me-2">
-				<a class="app-btn app-btn-bg-white" [routerLink]="['/login']">Login</a>
-				<a class="app-btn app-btn-bg-white" [routerLink]="['/register']">Register</a>
-			</div>
-		</ng-container>
 		<ng-container *ngIf="hasSearchBar && isAuthorized">
 			<app-searchbar
 				[placeHolder]="'Search products...'"
@@ -18,5 +12,22 @@
 				}"
 			></app-searchbar>
 		</ng-container>
+		<ng-container *ngIf="!isAuthorized; else logoutBlock">
+			<div class="app-btn-container">
+				<a class="app-btn app-btn-bg-white" [routerLink]="['/login']">Login</a>
+				<a class="app-btn app-btn-bg-white" [routerLink]="['/register']">Register</a>
+			</div>
+		</ng-container>
+		<ng-template #logoutBlock>
+			<div>
+				<p class="ms-2">Hello {{user.username}}</p>
+			</div>
+			<div class="app-btn-container ms-2">
+				<button
+					type="button"
+					class="app-btn app-btn-bg-white"
+					(click)="logout()">Logout</button>
+			</div>
+		</ng-template>
 	</div>
 </header>
