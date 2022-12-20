@@ -43,6 +43,8 @@ export class SearchComponent implements OnInit, OnDestroy {
 		for(let param in params) {
 			str = str + `${param}=${params[param]}` + '&';
 		}
+		str = str.substring(0, str.length - 1);
+		console.log(str);
 		return str;
 	}
 

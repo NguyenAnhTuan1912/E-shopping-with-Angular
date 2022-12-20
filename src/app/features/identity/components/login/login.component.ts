@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
                 next: (data: any) => {
                     this.auth.setTokenInLocalStorage(data.id_token);
                     this.auth.setTokenInLocalStorage(data.id_token, "access_token");
-                    this.popupService.popSuccess({ title: "Login successful!", detail: "Welcome back, my friend!" });
+                    this.popupService.popSuccess({ title: "Login Successful!", detail: "Welcome back, my friend!" });
                     this.router.navigateByUrl('/');
                     return;
                 },

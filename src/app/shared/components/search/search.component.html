@@ -2,9 +2,7 @@
 	<h2>Hello, welcome to your search result page in E-Shopping!</h2>
 	<div class="search-keys mt-2 mb-3">
 		<p>You search:</p>
-		<ng-container
-			*ngFor="let searchParamsKey of searchParamsKeys; let i = index"
-		>
+		<ng-container *ngFor="let searchParamsKey of searchParamsKeys; let i = index">
 			<p class="search-key">
 				{{ searchParamsKey }}:
 				{{ searchParams[searchParamsKey] }}

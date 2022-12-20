@@ -83,7 +83,7 @@ export class RegisterComponent implements OnInit {
                 catchError(err => { throw err})
             ).subscribe({
                 next: (data: any) => {
-                    this.popupService.popSuccess({ title: 'Register successful!', detail: 'Hello newcomer! Login to explore.' });
+                    this.popupService.popSuccess({ title: 'Register Successful!', detail: 'Hello newcomer! Login to explore.' });
                     this.router.navigateByUrl('/identity/login');
                     return;
                 },

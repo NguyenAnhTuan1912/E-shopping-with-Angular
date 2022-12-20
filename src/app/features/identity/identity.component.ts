@@ -3,11 +3,11 @@ import AppRouterLinkModel from "src/app/shared/models/AppRouterLinkModel";
 
 @Component({
     selector: 'app-identity',
-    templateUrl: './identity-center.component.html',
-    styleUrls: ['./identity-center.component.css'],
+    templateUrl: './identity.component.html',
+    styleUrls: ['./identity.component.css'],
     encapsulation: ViewEncapsulation.None
 })
-export class IdentityCenterPage {
+export class IdentityComponent {
     public listSubIdentityPageLinks: AppRouterLinkModel[] = [
         {
             name: 'Login',

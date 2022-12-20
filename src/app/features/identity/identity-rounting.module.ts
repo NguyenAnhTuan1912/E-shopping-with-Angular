@@ -5,7 +5,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { RegisterComponent } from "./components/register/register.component";
 
 import identity_routing_patterns from "./identity-routing.pattern";
-import { IdentityCenterPage } from "./components/identity-center/identity-center.component";
+import { IdentityComponent } from "./identity.component"; 
 import { ForgotPasswordComponent } from "./components/forgot-password/forgot-password.component";
 import { ResetPasswordComponent } from "./components/reset-password/reset-password.component";
 
@@ -17,7 +17,7 @@ const routes: Routes = [
     },
     {
         path: identity_routing_patterns['toHome'],
-        component: IdentityCenterPage,
+        component: IdentityComponent,
         children: [
             {
                 path: identity_routing_patterns['toLogin'],

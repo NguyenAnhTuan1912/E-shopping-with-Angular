@@ -48,7 +48,7 @@ export class ForgotPasswordComponent implements OnInit {
                     let url = "/identity/reset-password/";
                     console.log(data);
                     url += data.recover_token
-                    this.popupService.popSuccess({ title: 'Send reset password request successful!', detail: 'It\'s time to change your secret!' });
+                    this.popupService.popSuccess({ title: 'Request To Reset Password Successful!', detail: 'It\'s time to change your secret!' });
                     this.router.navigateByUrl(url);
                     return;
                 },

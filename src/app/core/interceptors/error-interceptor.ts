@@ -3,7 +3,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/c
 import { finalize, Observable, tap } from "rxjs";
 
 import HttpResErrorModel from "src/app/shared/models/HttpResErrorModel";
-import { PopupService } from "../../services/pop-up.service";
+import { PopupService } from "../services/pop-up.service";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {

@@ -65,7 +65,7 @@ export class ResetPasswordComponent implements OnInit {
             ).subscribe({
                 next: (data: any) => {
                     console.log(data);
-                    this.popupService.popSuccess({ title: 'Change password successful!', detail: 'Now, login again to see magic :)' });
+                    this.popupService.popSuccess({ title: 'Change Password Successful!', detail: 'Now, login again to see magic :)' });
                     this.router.navigateByUrl('/identity/login');
                     return;
                 },

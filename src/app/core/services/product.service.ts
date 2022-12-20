@@ -17,6 +17,8 @@ export class ProductService {
 
 	private ngUnsubscribe = new Subject<void>();
 
+	private apiUrl = '/api/v1.0';
+
 	constructor(private http: HttpClient) {
 		this.productObservable = this.productObservable.bind(this);
 		this.init();
@@ -54,11 +56,13 @@ export class ProductService {
 	}
 
 	searchProductsFromSV(params: string) {
-		return this.http.get(`${environments.serverOriginUrl}/api/v1.0/search?` + params);
+		const url = `${environments.serverOriginUrl}${this.apiUrl}/search?` + params;
+		return this.http.get(url);
 	}
 
 	getProductsFromSV() {
-		return this.http.get(`${environments.serverOriginUrl}/api/v1.0/products`);
+		const url = `${environments.serverOriginUrl}${this.apiUrl}/products`;
+		return this.http.get(url);
 	}
 
 	nextProducts(products: ProductModel[]) {

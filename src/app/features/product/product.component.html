@@ -1,0 +1,14 @@
+<div class="product p-2">
+	<h1>Product manager</h1>
+	<app-navbar [appRouterLinks]="listViewLinks"></app-navbar>
+	<ng-container *ngIf="typeOfProductsView !== ''">
+		<h4>
+			You are viewing as
+			{{ typeOfProductsView | specialCharacterToSpacePipe: '-' }}.
+		</h4>
+		<app-navbar [appRouterLinks]="categoryLinks"></app-navbar>
+		<div class="product-list">
+			<router-outlet></router-outlet>
+		</div>
+	</ng-container>
+</div>
