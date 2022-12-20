@@ -1,4 +1,4 @@
-import environments from "src/environments/environments";
+import environments from "src/environments/environment";
 
 export default class UserModel {
     id: string;

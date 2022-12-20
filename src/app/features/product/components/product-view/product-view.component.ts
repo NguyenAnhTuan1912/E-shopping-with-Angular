@@ -13,7 +13,7 @@ import getUniqueItemsFromArray from '../../../../shared/utils/getUniqueItemsFrom
 import replaceSpecialCharToSpace from '../../../../shared/utils/replaceSpecialCharToSpace';
 import toTitleCase from '../../../../shared/utils/toTitleCase';
 import { HttpClient } from '@angular/common/http';
-import environments from 'src/environments/environments';
+import environments from 'src/environments/environment';
 
 @Component({
 	selector: 'app-product-view',

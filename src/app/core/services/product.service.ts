@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, takeUntil } from 'rxjs';
-import environments from 'src/environments/environments';
+import environments from 'src/environments/environment';
 import ProductModel from '../../shared/models/ProductModel';
 
 @Injectable({

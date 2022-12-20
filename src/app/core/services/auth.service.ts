@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import environments from "src/environments/environments";
+import environments from "src/environments/environment";
 import { LoginReqBody, RegisterReqBody } from "src/app/shared/models/ReqBodyModel";
 
 @Injectable()
